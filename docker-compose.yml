@@ -12,16 +12,15 @@ services:
       - ./mysql/data:/var/lib/mysql
       - ./mysql/conf:/etc/mysql/conf.d
   gogs:
-    image: gogs/gogs:latest
+    image: gogs/gogs:0.11.66
     restart: always
     ports:
       - "80:3000"
       - "10022:22"
     volumes:
       - ./data:/data
-      - ./gogs:/gogs
-      - ./public:/public
-      - ./templates:/templates
+      - ./public:/app/gogs/public
+      - ./templates:/app/gogs/templates
     links:
       - mysql
     depends_on:
