@@ -9,8 +9,8 @@ services:
       - MYSQL_USER=gogs
       - MYSQL_PASSWORD=gogs
     volumes:
-      - ./data/mysql:/var/lib/mysql
-      - ./data/mysql/conf:/etc/mysql/conf.d
+      - ./mysql/data:/var/lib/mysql
+      - ./mysql/conf:/etc/mysql/conf.d
   gogs:
     image: gogs/gogs:latest
     restart: always
