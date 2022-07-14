@@ -1,0 +1,28 @@
+version: '3'
+services:
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=zhangxing91@foxmail
+      - MYSQL_DATABASE=gogs
+      - MYSQL_USER=gogs
+      - MYSQL_PASSWORD=gogs
+    volumes:
+      - ./data/mysql:/var/lib/mysql
+      - ./data/mysql/conf:/etc/mysql/conf.d
+  gogs:
+    image: gogs/gogs:latest
+    restart: always
+    ports:
+      - "80:3000"
+      - "10022:22"
+    volumes:
+      - ./data:/data
+      - ./gogs:/gogs
+      - ./public:/public
+      - ./templates:/templates
+    links:
+      - mysql
+    depends_on:
+      - mysql
